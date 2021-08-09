@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>home</title>
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'orkut/css/style1.css' %}">
+    <script src="{% static 'orkut/js/jquery-3.3.1.min.js' %}"></script>
+        <script src="{% static 'orkut/js/validate.min.js' %}"></script>
+	<script language="Javascript">
+
+        $(document).ready(function () {
+            $('#editform').submit(function (e) {
+                 e.preventDefault()
+                    $.ajax({
+                        data: $(this).serialize(),
+                        type: $(this).attr('method'),
+                        url: $(this).attr('action'),
+                        success: function (response) {
+                            if(response=="1")
+                                window.location.href = "inbox"
+
+                        },
+                        error: function (data) {
+                            alert('error')
+                        },
+                    });
+                    return false;
+
+            });
+        });
+
+
+    </script>
+</head>
+<body>
+
+    <form action="{%  url 'orkut:editprofile' %}" method="post"  id="editform" onsubmit="{ return false}">
+     {% csrf_token %}
+	<div id="cent"  >
+	<table cellspacing=15 width=70%>
+	<td bgColor='skyblue'><font face='verdana' size='2'>Name  :</td>
+	<td bgColor='white'><div id='firstname'><font face='verdana' size='2'><input type="text" id="firstname" name="firstname" value="{{ filter_record.firstname }}"></div></td>
+	<tr>
+	<td bgColor='skyblue'><font face='verdana' size='2'>Last Name  :</td>
+	<td bgColor='white'><div id='lastname'><font face='verdana' size='2'><input type="text" id="lastname" name="lastname" value="{{ filter_record.lastname }}"></div></td>
+	<tr>
+	<td bgColor='skyblue'><font face='verdana' size='2'>Address  :</td>
+	<td bgColor='white'><div id='address'><font face='verdana' size='2'><input type="text" id="address" name="address" value="{{ filter_record.address }}"></div></td>
+	<tr>
+	<td bgColor='skyblue'><font face='verdana' size='2'>Email Id  :</td>
+	<td bgColor='white'><div id='email'><font face='verdana' size='2'><input type="text" id="email" name="email" value="{{ filter_record.email }}"></div></td>
+	<tr>
+	<td bgColor='skyblue'><font face='verdana' size='2'>Phone No.  :</td>
+	<td bgColor='white'><div id='phone'><font face='verdana' size='2'><input type="text" id="phone" name="phone" value="{{ filter_record.phone }}"></div></td>
+        <tr>
+        <td bgColor='white' ><div id='btn'><font face='verdana' size='2'><button type="submit" class="btn btn-success" id="btn" name="btn" >Update</button></div></td>
+
+	</table>
+    </div>
+    </form>
+
+
+</body>
+</html>

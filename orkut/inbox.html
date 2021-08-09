@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'orkut/css/style1.css' %}">
+    <script src="{% static 'orkut/js/jquery-3.3.1.min.js' %}"></script>
+        <script src="{% static 'orkut/js/validate.min.js' %}"></script>
+	<script language="Javascript">
+        $(document).ready(function () {
+            $('#sclink').click(function () {
+
+                $.ajax({ // create an AJAX call...
+                type: 'GET', // GET or POST
+                url: 'scraps', // the file to call
+                success: function(response) { // on success..
+                    $('#center1').html(response)
+                },
+                error: function(data) {
+                    alert(data)
+            }
+            });
+            return false;
+
+            });
+
+             $('#homelink').click(function () {
+
+                $.ajax({ // create an AJAX call...
+                type: 'GET', // GET or POST
+                url: 'home', // the file to call
+                success: function(response) { // on success..
+                    $('#center1').html(response)
+                },
+                error: function(data) {
+                    alert(data)
+            }
+            });
+            return false;
+
+            });
+
+              $('#updatelink').click(function () {
+
+                $.ajax({ // create an AJAX call...
+                type: 'GET', // GET or POST
+                url: 'update', // the file to call
+                success: function(response) { // on success..
+                    $('#center1').html(response)
+                },
+                error: function(data) {
+                    alert(data)
+            }
+            });
+            return false;
+
+            });
+
+        });
+	</script>
+</head>
+<body bgcolor=#e8eefa>
+	<div id="bar">
+	<div id="web">Web</div>
+	<div id="map">Maps</div>
+	<div id="news">News</div>
+	<div id="orkut">Orkut</div>
+	<div id="translate">Translate</div>
+	<div id="book">Books</div>
+	<div id="gmail">Gmail</div>
+	<div id="more">more</div>
+	<div id="uid">{{ filter_record.email }}</div>
+	<div id="bar1">|</div>
+	<div id="settings">settings</div>
+	<div id="bar2">|</div>
+	<div id="older">older version</div>
+	<div id="bar3">|</div>
+	<div id="signout"><a href="{% url 'orkut:logout' %}">Signout</a></div>
+	</div>
+	<div id="mainimg"></div>
+	<div id="box1">
+	<div id="home">Home</div>
+	</div>
+	<div id="box2">
+	<div id="profile">profile</div>
+	</div>
+	<div id="box3">
+	<div id="scraps">Scraps</div>
+	</div>
+	<div id="box4">
+	<div id="communities">communities</div>
+	</div>
+	<div id="box5">
+	<div id="applications">applications</div>
+	</div>
+	<div id="box6">
+	<div id="themes">themes</div>
+	</div>
+	<div id="search"> <input type="textbox">
+	</div>
+	<div id="search1"><input type="button" value="search"></div>
+	<div id="center">
+	<div id="say">Say something to your friends or post a picture, video or other link here.</div>
+	<div id="post"><input type="button" value="post"></div>
+	<div id="cancel"><input type="button" value="cancel"></div>
+	</div>
+	<div id="center1">
+	<table cellspacing=15 width=70%>
+	<td bgColor='skyblue'><font face='verdana' size='2'>Name  :</td>
+	<td bgColor='pink'><div id='firstname'><font face='verdana' size='2'>{{ filter_record.firstname }}</div></td>
+	<tr>
+	<td bgColor='skyblue'><font face='verdana' size='2'>Last Name  :</td>
+	<td bgColor='skyblue'><div id='lastname'><font face='verdana' size='2'>{{ filter_record.lastname }}</div></td>
+	<tr>
+	<td bgColor='skyblue'><font face='verdana' size='2'>Address  :</td>
+	<td bgColor='skyblue'><div id='address'><font face='verdana' size='2'>{{ filter_record.address }}</div></td>
+	<tr>
+	<td bgColor='skyblue'><font face='verdana' size='2'>Email Id  :</td>
+	<td bgColor='skyblue'><div id='email'><font face='verdana' size='2'>{{ filter_record.email }}</div></td>
+	<tr>
+	<td bgColor='skyblue'><font face='verdana' size='2'>Phone No.  :</td>
+	<td bgColor='skyblue'><div id='phone'><font face='verdana' size='2'>{{ filter_record.phone }}</div></td>
+
+	</table>
+	</div>
+	<div id="left">
+        <img src="{% static filter_record.pic %}">
+	</div>
+
+
+
+	<div id="left1">
+
+	<div id="shruti">{{ filter_record.firstname }} {{ filter_record.lastname }}</div>
+
+        <div id="allupdates"><a href="#" id="homelink">Home</a></div>
+
+        <div id="myupdates"><a href="#" id="updatelink">Updates Profile</a></div>
+
+        <div id="profile1"><a href="#" id="sclink">Messages</a></div>
+
+	<div id="reminders">Reminders</div>
+
+	<div id="scraps1">Scraps</div>
+
+	<div id="photos">Photos</div>
+
+	</div>
+
+
+
+
+
+	<div id="right"></div>
+	<div id="right1"></div>
+	<div id="right2"></div>
+	<div id="right3"></div>
+
+
+
+
+
+
+
+
+
+	<div id="bottom">
+	<div id="go"><a href="abc.html">go to orkut.com</a></div>
+	<div id="bar4">|</div>
+	<div id="about"><a href="abc.html">about orkut</a></div>
+	<div id="bar5">|</div>
+	<div id="blog"><a href="abc.html">blog</a></div>
+	<div id="bar6">|</div>
+	<div id="developers"><a href="abc.html">developers</a></div>
+	<div id="bar7">|</div>
+	<div id="safety"><a href="abc.html">safety center</a></div>
+	<div id="bar8">|</div>
+	<div id="privacy"><a href="abc.html">privacy</a></div>
+	<div id="bar9">|</div>
+	<div id="terms"><a href="abc.html">terms</a></div>
+	<div id="bar10">|</div>
+	<div id="advertise"><a href="abc.html">advertise</a></div>
+	<div id="bar11">|</div>
+	<div id="help"><a href="abc.html">help</a></div>
+	</div>
+
+	</body>
+</html>

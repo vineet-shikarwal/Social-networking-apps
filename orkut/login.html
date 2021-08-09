@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>orkut.com</title>
+
+    {%  load static %}
+
+    <LINK rel="StyleSheet" type="text/css" href="{% static 'orkut/css/main.css' %}">
+    <script src="{% static 'orkut/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'orkut/js/validate.min.js' %}"></script>
+
+    <link href="{% static 'orkut/bootstrap/bootstrap.min.css' %}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script language="JavaScript">
+        $(document).ready(function () {
+            $("#loginform").validate({
+                rules: {
+                    t1: "required",
+                    p1: "required",
+                },
+                messages: {
+                    t1: "please enter your name",
+                    p1: "please enter your password",
+                },
+            });
+            $("#loginform").submit(function (e) {
+                e.preventDefault()
+                    $.ajax({
+                        data: $(this).serialize(),
+                        type: $(this).attr('method'),
+                        url: $(this).attr('action'),
+                        success: function (response) {
+                            if(response=="1")
+                                window.location.href = "inbox"
+                            else
+                                $('#access').html("<font color='red'> Invalid id or password </font>")
+
+                        },
+                        error: function (data) {
+                            alert('error')
+                        },
+                    });
+                    return false;
+            });
+
+            $('#Userlink').click(function () {
+                window.location.href = "register"
+
+            });
+
+
+        });
+
+    </script>
+
+</head>
+<body>
+
+
+	<form name="f" id="loginform" action="{% url 'orkut:checklogin' %}" method="post" onsubmit="{ return false}">
+        {% csrf_token %}
+        <div class= "container" >
+        <div class="row">
+        <div class="col-md-3">
+        <img src="{% static 'orkut/images/logo.gif' %}">
+        </div>
+        <div class="col-md-9">
+        <div id="myhead">By VineetShikarwal</div>
+        </div>
+        </div>
+        <div id="row">
+        <div class="col-md-8">
+        <div class="myheading">Just like real life</div>
+        <p>Share with all or separated groups of friends, controlling who sees what.
+    Connect with your best friend, your boss and your grandma with confidence.</p>
+        <div class="myheading">Get the conversation started</div>
+        <p>Chat, comment and talk with each group of your friends for a conversation you control.</p>
+        <div class="myheading">Have fun!</div>
+        <p>Easily share photos, videos and news. Join communities to discuss topics of your interest.</p>
+        </div>
+            <div id="loginbox" class="col-md-4">
+        <div class="row"><span><center>Sign in With your</center></span>
+        <span id="acc"><center><img src="{% static 'orkut/images/google.gif' %}">Account</center></span></div>
+        <div class="row">
+        <center>
+        <span>UserID : </span>
+        <input type="text" name="t1">
+        </center>
+        </div>
+        <div id="pass" class="gap">
+        <center>
+        <span>Pass : &nbsp;</span>
+        <input type="password" name="p1">
+        </center>
+        <div id="subbutton" class="gap"><center><input type="submit" value="Sign "></center></div>
+        <div id="access" class="gap"><center><a href="#">Can't access your accout</a></center></div>
+        </div>
+        </div>
+        </div>
+        <div class="row">
+        <div id="footerlink" class="col-md-8">orkut blogVerify your business on Google Maps and get an Orkut Badge -Wed Jun 15 2011-more posts >>
+        </div>
+        <div id="footerbox" class="col-md-4"><span><center>Don't have a Google Account?</center></span>
+            <span class="gap"><center> <a href="#" id="Userlink"> Create an account </a> </center></span>
+
+        </div>
+
+        </div>
+        </div>
+    </form>
+
+</body>
+</html>

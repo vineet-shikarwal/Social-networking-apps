@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>home</title>
+
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'orkut/css/style1.css' %}">
+    <script src="{% static 'orkut/js/jquery-3.3.1.min.js' %}"></script>
+        <script src="{% static 'orkut/js/validate.min.js' %}"></script>
+	<script language="Javascript">
+
+    </script>
+</head>
+<body>
+
+
+	<div id="cent"  >
+	<table cellspacing=15   align="left" width=70%>
+	<td bgColor='skyblue'><font face='verdana' size='2'>Name  :</td>
+	<td bgColor='pink'><div id='firstname'><font face='verdana' size='2'>{{ filter_record.firstname }}</div></td>
+	<tr>
+	<td bgColor='skyblue'><font face='verdana' size='2'>Last Name  :</td>
+	<td bgColor='skyblue'><div id='lastname'><font face='verdana' size='2'>{{ filter_record.lastname }}</div></td>
+	<tr>
+	<td bgColor='skyblue'><font face='verdana' size='2'>Address  :</td>
+	<td bgColor='skyblue'><div id='address'><font face='verdana' size='2'>{{ filter_record.address }}</div></td>
+	<tr>
+	<td bgColor='skyblue'><font face='verdana' size='2'>Email Id  :</td>
+	<td bgColor='skyblue'><div id='email'><font face='verdana' size='2'>{{ filter_record.email }}</div></td>
+	<tr>
+	<td bgColor='skyblue'><font face='verdana' size='2'>Phone No.  :</td>
+	<td bgColor='skyblue'><div id='phone'><font face='verdana' size='2'>{{ filter_record.phone }}</div></td>
+
+    </tr>
+    </table>
+    </div>
+
+
+
+</body>
+</html>
